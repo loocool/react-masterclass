@@ -6,6 +6,7 @@ import {
   useLocation,
   useParams,
   useRouteMatch,
+  useHistory,
 } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -16,6 +17,12 @@ import Price from "./Price";
 const Title = styled.h1`
   font-size: 48px;
   color: ${(props) => props.theme.accentColor};
+`;
+
+const Buttons = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Loader = styled.span`
@@ -31,7 +38,9 @@ const Container = styled.div`
 
 const Header = styled.header`
   height: 15vh;
+  width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
@@ -142,10 +151,11 @@ interface PriceData {
 }
 
 interface ICoinProps {
+  toggleDark: () => void;
   isDark: boolean;
 }
 
-function Coin({ isDark }: ICoinProps) {
+function Coin({ toggleDark, isDark }: ICoinProps) {
   const { coinId } = useParams<RouteParams>();
   const { state } = useLocation<RouteState>();
   const priceMatch = useRouteMatch("/:coinId/price");
@@ -161,7 +171,10 @@ function Coin({ isDark }: ICoinProps) {
       refetchInterval: 5000,
     }
   );
+  const history = useHistory();
   const loading = infoLoading || tickersLoading;
+  //const goBack = () => history.goBack();
+  const goHome = () => history.push("/");
   return (
     <Container>
       <Helmet>
@@ -170,6 +183,10 @@ function Coin({ isDark }: ICoinProps) {
         </title>
       </Helmet>
       <Header>
+        <Buttons>
+          <button onClick={goHome}>Home</button>
+          <button onClick={toggleDark}>Toggle Dark Mode</button>
+        </Buttons>
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>

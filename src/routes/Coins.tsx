@@ -13,7 +13,9 @@ const Container = styled.div`
 const Header = styled.header`
   position: relative;
   height: 15vh;
+  width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
@@ -44,10 +46,10 @@ const Title = styled.h1`
   color: ${(props) => props.theme.accentColor};
 `;
 
-const ToggleButton = styled.div`
-  position: absolute;
-  right: 0;
-  bottom: 10px;
+const Buttons = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const Loader = styled.span`
@@ -83,10 +85,10 @@ function Coins({ toggleDark }: ICoinsProps) {
         <title>코인</title>
       </Helmet>
       <Header>
-        <Title>코인</Title>
-        <ToggleButton>
+        <Buttons>
           <button onClick={toggleDark}>Toggle Dark Mode</button>
-        </ToggleButton>
+        </Buttons>
+        <Title>코인</Title>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>
