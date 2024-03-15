@@ -162,8 +162,8 @@ interface ICoinProps {
 function Coin({ toggleDark, isDark }: ICoinProps) {
   const { coinId } = useParams<RouteParams>();
   const { state } = useLocation<RouteState>();
-  const priceMatch = useRouteMatch("/:coinId/price");
-  const chartMatch = useRouteMatch("/:coinId/chart");
+  const priceMatch = useRouteMatch("/react-masterclass/:coinId/price");
+  const chartMatch = useRouteMatch("/react-masterclass/:coinId/chart");
   const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(
     ["info", coinId],
     () => fetchCoinInfo(coinId)
@@ -178,7 +178,7 @@ function Coin({ toggleDark, isDark }: ICoinProps) {
   const history = useHistory();
   const loading = infoLoading || tickersLoading;
   //const goBack = () => history.goBack();
-  const goHome = () => history.push("/");
+  const goHome = () => history.push("/react-masterclass");
   return (
     <Container>
       <Helmet>
@@ -227,18 +227,18 @@ function Coin({ toggleDark, isDark }: ICoinProps) {
 
           <Tabs>
             <Tab isActive={chartMatch !== null}>
-              <Link to={`/${coinId}/chart`}>Chart</Link>
+              <Link to={`/react-masterclass/${coinId}/chart`}>Chart</Link>
             </Tab>
             <Tab isActive={priceMatch !== null}>
-              <Link to={`/${coinId}/price`}>Price</Link>
+              <Link to={`/react-masterclass/${coinId}/price`}>Price</Link>
             </Tab>
           </Tabs>
 
           <Switch>
-            <Route path={`/:coinId/price`}>
+            <Route path={`/react-masterclass/:coinId/price`}>
               <Price isDark={isDark} coinId={coinId} />
             </Route>
-            <Route path={`/:coinId/chart`}>
+            <Route path={`/react-masterclass/:coinId/chart`}>
               <Chart isDark={isDark} coinId={coinId} />
             </Route>
           </Switch>

@@ -98,7 +98,7 @@ function Coins({ toggleDark }: ICoinsProps) {
             <Coin key={coin.id}>
               <Link
                 to={{
-                  pathname: `/${coin.id}`,
+                  pathname: `/react-masterclass/${coin.id}`,
                   state: { name: coin.name },
                 }}
               >

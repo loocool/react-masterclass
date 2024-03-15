@@ -11,10 +11,10 @@ function Router({ toggleDark, isDark }: IRouterProps) {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/:coinId">
+        <Route path="/react-masterclass/:coinId">
           <Coin isDark={isDark} toggleDark={toggleDark} />
         </Route>
-        <Route path="/">
+        <Route path="/react-masterclass">
           <Coins toggleDark={toggleDark} />
         </Route>
       </Switch>
