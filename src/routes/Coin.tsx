@@ -23,6 +23,10 @@ const Buttons = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  button {
+    border-radius: 12px;
+    padding: 2px 15px;
+  }
 `;
 
 const Loader = styled.span`
@@ -37,7 +41,7 @@ const Container = styled.div`
 `;
 
 const Header = styled.header`
-  height: 15vh;
+  height: 13vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -183,13 +187,13 @@ function Coin({ toggleDark, isDark }: ICoinProps) {
         </title>
       </Helmet>
       <Header>
+        <Title>
+          {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
+        </Title>
         <Buttons>
           <button onClick={goHome}>Home</button>
           <button onClick={toggleDark}>Toggle Dark Mode</button>
         </Buttons>
-        <Title>
-          {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
-        </Title>
       </Header>
       {loading ? (
         <Loader>Loading...</Loader>
@@ -232,7 +236,7 @@ function Coin({ toggleDark, isDark }: ICoinProps) {
 
           <Switch>
             <Route path={`/:coinId/price`}>
-              <Price />
+              <Price isDark={isDark} coinId={coinId} />
             </Route>
             <Route path={`/:coinId/chart`}>
               <Chart isDark={isDark} coinId={coinId} />

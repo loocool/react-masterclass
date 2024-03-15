@@ -12,7 +12,7 @@ const Container = styled.div`
 
 const Header = styled.header`
   position: relative;
-  height: 15vh;
+  height: 13vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -85,10 +85,10 @@ function Coins({ toggleDark }: ICoinsProps) {
         <title>코인</title>
       </Helmet>
       <Header>
+        <Title>코인</Title>
         <Buttons>
           <button onClick={toggleDark}>Toggle Dark Mode</button>
         </Buttons>
-        <Title>코인</Title>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>
